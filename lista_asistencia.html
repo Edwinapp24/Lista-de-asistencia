@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super list</title>
+    <style>
+        body {
+            font-family: 'Times New Roman';
+            margin: 80px;
+            padding: 0;
+            background-color: #5f8bc6;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: rgb(247, 243, 243);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select, button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 8px;
+            font-size: 1em;
+            border: 1px solid #000000;
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Asistencia</h1>
+        <label for="nombre">Nombre del Estudiante:</label>
+        <input type="text" id="nombre" placeholder="Ingresa el nombre del estudiante">
+        
+        <label for="estado">Estado de Asistencia:</label>
+        <select id="estado">
+            <option value="Presente">Presente</option>
+            <option value="Ausente">Ausente</option>
+        </select>
+
+        <button id="agregar">Agregar a la Lista</button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-asistencia">
+                <!-- Aquí se agregarán las filas dinámicamente -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.getElementById('agregar').addEventListener('click', function () {
+            const nombre = document.getElementById('nombre').value.trim();
+            const estado = document.getElementById('estado').value;
+
+            if (nombre === "") {
+                alert("Por favor, ingresa el nombre del estudiante.");
+                return;
+            }
+
+            const tabla = document.getElementById('tabla-asistencia');
+            const fila = document.createElement('tr');
+
+            const celdaNombre = document.createElement('td');
+            celdaNombre.textContent = nombre;
+
+            const celdaEstado = document.createElement('td');
+            celdaEstado.textContent = estado;
+
+            fila.appendChild(celdaNombre);
+            fila.appendChild(celdaEstado);
+            tabla.appendChild(fila);
+
+            // Limpiar el campo de entrada
+            document.getElementById('nombre').value = '';
+        });
+    </script>
+</body>
+</html>
